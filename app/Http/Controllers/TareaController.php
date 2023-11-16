@@ -7,10 +7,14 @@ use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
-    function index(){
+    function listaTareas(){
        $tareas=Tarea::all();
         return view('listaTareas', ['tareas' => $tareas]);
-    }
+    }    
+    function task(){
+        $tareas=Tarea::all();
+         return view('nuevaTarea', ['tareas' => $tareas]);
+     }
 
     function tarea(Request $request){
 
