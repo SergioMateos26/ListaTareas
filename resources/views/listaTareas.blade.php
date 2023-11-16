@@ -16,34 +16,79 @@
         padding:1% !important;
         border-radius:calc(0.375rem - 1px);
     }
+    table{
+        
+    }
 </style>
-<header>
-    <nav class="navbar navbar-expand-xs navbar-light bg-light border">
-        <h1 class="navbar-brand" href="#">Lista de Tareas</h1>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">Home</a>
-                <a class="nav-item nav-link" href="#">Features</a>
-                <a class="nav-item nav-link" href="#">Pricing</a>
-                <a class="nav-item nav-link" href="#">Disabled</a>
-            </div>
-        </div>
-    </nav>
-</header>
-<br>
-<br>
-  <body>
 
+<body>
+
+@section('nav')
+    <header>
+        <nav class="navbar navbar-expand-xs navbar-light bg-light border">
+            <h1 class="navbar-brand" href="#">Lista de Tareas</h1>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link" href="#">Home</a>
+                    <a class="nav-item nav-link" href="#">Features</a>
+                    <a class="nav-item nav-link" href="#">Pricing</a>
+                    <a class="nav-item nav-link" href="#">Disabled</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+@endsection
+@yield('nav')
+
+<br>
+<br>
+
+@section('tarea')
     <div class="card">
         <div class="card-header"><strong>Nueva tarea</strong></div>
         <div class="card-body">
             <h5 class="card-title">Tarea</h5>
-            <input type="text" name="nombre">
-            <input type="submit" name="submit" value="Añadir tarea">
+            <form action="/tarea" method="POST">
+                @csrf
+                <input type="text" name="nombre">
+                <input class="bg-primary" type="submit" name="submit" value="Añadir tarea">
+            </form>
         </div>
     </div>
+@endsection
+@yield('tarea')
+
+<br>
+<br>
+
+@section('lista')
+    <div class="card">
+        <div class="card-header"><strong>Lista de Tareas</strong></div>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <th>Tareas</th>
+                </tr>
+@foreach($tareas as $tarea)
+                <tr>
+                    <td>{{ $tarea->nombre }}</td>
+                    <td>
+                        <form action="/tarea/{{$tarea->id}}" method='POST'>
+                            @csrf
+                            {{ method_field('DELETE') }}
+                            <input class="bg-danger" type="submit" name="submit" onclick="return confirm('Seguro que quieres eliminar la tarea?')" value="Eliminar">
+                        </form>
+                    </td>
+                </tr>
+@endforeach
+            </table>
+        </div>
+    </div>
+@endsection
+@yield('lista')
+
   </body>
 </html>

@@ -2,11 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tarea;
 use Illuminate\Http\Request;
 
 class TareaController extends Controller
 {
     function index(){
-        return view('listaTareas');
+       $tareas=Tarea::all();
+        return view('listaTareas', ['tareas' => $tareas]);
+    }
+
+    function tarea(Request $request){
+
+        $tarea = new Tarea;
+        $tarea->nombre = $request->nombre;
+        $tarea->save();
+
+        return redirect('/');
+    }
+
+    function eliminar($id){
+        Tarea::destroy($id);
+        return redirect('/');
     }
 }

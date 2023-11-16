@@ -15,3 +15,5 @@ use App\Http\Controllers\TareaController;
 */
 
 Route::get('/', [TareaController::class, 'index'])->name('index');
+Route::post('/tarea', [TareaController::class, 'tarea'])->name('tarea');
+Route::delete('/tarea/{id}', [TareaController::class, 'eliminar'])->name('eliminar');
