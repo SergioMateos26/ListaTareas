@@ -34,7 +34,7 @@
                 <div class="navbar-nav">
                     <a class="nav-item nav-link" href="/">Lista Tareas</a>
                     <a class="nav-item nav-link" href="/task">Nueva Tarea</a>
-                    <a class="nav-item nav-link" href="#">Busqueda</a>
+                    <a class="nav-item nav-link" href="/busqueda">Busqueda</a>
                 </div>
             </div>
         </nav>

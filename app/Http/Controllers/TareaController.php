@@ -11,6 +11,7 @@ class TareaController extends Controller
        $tareas=Tarea::all();
         return view('listaTareas', ['tareas' => $tareas]);
     }    
+
     function task(){
         $tareas=Tarea::all();
          return view('nuevaTarea', ['tareas' => $tareas]);
@@ -22,11 +23,29 @@ class TareaController extends Controller
         $tarea->nombre = $request->nombre;
         $tarea->save();
 
-        return redirect('/');
+        return redirect('/task');
     }
 
     function eliminar($id){
         Tarea::destroy($id);
         return redirect('/');
+    }
+
+    function busqueda(){
+        $tareas=Tarea::all();
+        return view('busqueda', ['tareas' => $tareas]);
+    }
+
+    public function buscar(Request $request){
+
+        if($request->get('buscador')){
+            $tareas = Tarea::where("nombre", "LIKE", "%{$request->get('buscador')}%")
+                ->get();
+                return view('busqueda', ['tareas' => $tareas]);
+        }else{
+            $tareas = Tarea::all();  
+            return view('busqueda', ['tareas' => $tareas]);
+        }
+
     }
 }
