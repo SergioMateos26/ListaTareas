@@ -24,6 +24,7 @@
 <body>
 
 @section('nav')
+<center><h1>Sergio Mateos Lozano</h1></center>
     <header>
         <nav class="navbar navbar-expand-xs navbar-light bg-light border">
             <h1 class="navbar-brand" href="#">Lista de Tareas</h1>
