@@ -39,11 +39,10 @@
             </div>
         </nav>
     </header>
+<br>
+<br>
 @endsection
 @yield('nav')
-
-<br>
-<br>
 
 @section('tarea')
     <div class="card">
@@ -54,14 +53,17 @@
                 @csrf
                 <input type="text" name="nombre">
                 <input class="bg-primary" type="submit" name="submit" value="Añadir tarea">
+                    @error('nombre')
+                  <div class="alert alert-danger">{{ $message }}</div>
+                  @enderror
             </form>
         </div>
     </div>
+<br>
+<br>
 @endsection
 @yield('tarea')
 
-<br>
-<br>
 
 @section('lista')
     <div class="card">
@@ -74,15 +76,12 @@
 @foreach($tareas as $tarea)
                 <tr>
                     <td>{{ $tarea->nombre }}</td>
-                    <td>
-                        <form action="/tarea/{{$tarea->id}}" method='POST'>
-                            @csrf
-                            {{ method_field('DELETE') }}
-                            <input class="bg-danger" type="submit" name="submit" onclick="return confirm('Seguro que quieres eliminar la tarea?')" value="Eliminar">
-                        </form>
-                    </td>
                 </tr>
 @endforeach
+
+                <tr>
+                    <td>@each('boton', $tareas, 'tarea')</td>
+                </tr>
             </table>
         </div>
     </div>

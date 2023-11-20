@@ -19,6 +19,10 @@ class TareaController extends Controller
 
     function tarea(Request $request){
 
+        $request->validate([
+            'nombre' => 'required',
+        ]);
+
         $tarea = new Tarea;
         $tarea->nombre = $request->nombre;
         $tarea->save();
