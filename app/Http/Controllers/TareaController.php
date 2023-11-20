@@ -21,6 +21,9 @@ class TareaController extends Controller
 
         $request->validate([
             'nombre' => 'required',
+        ],
+        [
+            'nombre.required' => '¡El texto está vacío!',
         ]);
 
         $tarea = new Tarea;

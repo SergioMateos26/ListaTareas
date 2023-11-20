@@ -72,16 +72,15 @@
             <table>
                 <tr>
                     <th>Tareas</th>
+                    <th>Acciones</th>
                 </tr>
 @foreach($tareas as $tarea)
                 <tr>
                     <td>{{ $tarea->nombre }}</td>
+                    <td>@each('boton', [$tarea], 'tarea')</td>
                 </tr>
 @endforeach
 
-                <tr>
-                    <td>@each('boton', $tareas, 'tarea')</td>
-                </tr>
             </table>
         </div>
     </div>

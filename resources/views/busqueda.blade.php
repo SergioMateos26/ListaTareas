@@ -7,7 +7,7 @@
         <form action="/buscar" method='GET'>
             @csrf
             <input type="text" name="buscador">
-            <input type="submit" name="submit" value="submit">
+            <input class="bg-primary" type="submit" name="submit" value="Buscar">
         </form>
         </div>
 </div>
