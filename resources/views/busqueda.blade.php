@@ -1,5 +1,7 @@
 @extends('main')
 
+@section('titulo', 'Buscador')
+
 @section('lista')
 <div class="card">
     <div class="card-header"><strong>Buscador</strong></div>
